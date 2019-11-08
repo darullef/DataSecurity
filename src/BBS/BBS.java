@@ -85,16 +85,6 @@ public class BBS {
         return x;
     }
 
-    private BigInteger getM(int p, int q)
-    {
-        int m = p * q;
-        while(m < 0)
-        {
-            m = p * q;
-        }
-        return BigInteger.valueOf(m);
-    }
-
     public String generateBBS()
     {
         String result = "";
