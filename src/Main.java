@@ -1,4 +1,5 @@
 import BBS.*;
+import AES.*;
 
 public class Main {
 
@@ -16,8 +17,18 @@ public class Main {
         t.pokerTest();
     }
 
-    public static void main(String[] args)
+    public static void CBC() throws Exception {
+        CBC cbc = new CBC();
+        String plainText = "ala ma kota ale kot nie ma ali";
+        String key = "abcdefghijklmop";
+        byte[] x = cbc.encryption(plainText, key);
+        String result = cbc.decryption(x, key);
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) throws Exception
     {
-        BBS();
+        //BBS();
+        //CBC();
     }
 }
