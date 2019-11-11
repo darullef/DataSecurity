@@ -25,7 +25,7 @@ public class CBC {
         System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
 
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] encrypted = cipher.doFinal(plainTextBytes);
 
@@ -54,7 +54,7 @@ public class CBC {
         System.arraycopy(md.digest(), 0, keyBytes, 0, keyBytes.length);
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
 
-        Cipher cipherDecrypt = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        Cipher cipherDecrypt = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipherDecrypt.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] decrypted = cipherDecrypt.doFinal(encryptedBytes);
 
