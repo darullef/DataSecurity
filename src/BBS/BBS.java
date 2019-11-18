@@ -78,7 +78,7 @@ public class BBS {
     private int getRandomSeed(int minRange, int maxRange)
     {
         int x = rand.nextInt(maxRange) + minRange;
-        while(nwd_1(x , this.m.intValue()) == 2)
+        while(nwd_1(x , this.m.intValue()) == 1)
         {
             x = rand.nextInt(maxRange) + minRange;
         }

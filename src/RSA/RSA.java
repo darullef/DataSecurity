@@ -22,8 +22,11 @@ public class RSA {
         this.q = getRandomPQ(minRange, maxRange);
         this.n = BigInteger.valueOf(this.p * this.q);
         this.phi = BigInteger.valueOf((this.p - 1) * (this.q - 1));
+        //System.out.println("OK");
         this.e = getE(minRange, maxRange);
+        //System.out.println("E");
         this.d = getD(minRange, maxRange);
+        //System.out.println("D");
     }
 
     private boolean isPrime(int x)
@@ -58,7 +61,7 @@ public class RSA {
     private int getRandomPQ(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while(isPrime(x))
+        while((isPrime(x)) && (this.p == this.q))
         {
             x = random.nextInt(maxRange) + minRange;
         }
@@ -68,7 +71,7 @@ public class RSA {
     private int getE(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while(isPrime(x) && nwd_1(x, this.phi.intValue()) == 2)
+        while(isPrime(x) && nwd_1(x, this.phi.intValue()) == 1)
         {
             x = random.nextInt(maxRange) + minRange;
         }
@@ -78,7 +81,7 @@ public class RSA {
     private int getD(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while((e * d) % n.intValue() == (1 % phi.intValue()) % n.intValue())
+        while((e * x) % n.intValue() == (1 % phi.intValue()) % n.intValue())
         {
             x = random.nextInt(maxRange) + minRange;
         }
@@ -101,7 +104,7 @@ public class RSA {
     public void print()
     {
         System.out.println("p: " + this.p + ", q: " + this.q + ", n: " + this.n + ", phi: " +
-                this.phi + ", e: " + this.e + ", d:" + this.d);
+                this.phi + ", e: " + this.e + ", d: " + this.d);
     }
 
     public void doRSA(String text) {

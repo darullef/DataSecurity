@@ -4,6 +4,7 @@ import RSA.*;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
     public static void BBS()
     {
         long timeStart1 = System.currentTimeMillis();
-        BBS bbs1 = new BBS(10000, 100000, 20000);
+        BBS bbs1 = new BBS(10000, 20000, 20000);
         bbs1.print();
         String result1 = bbs1.generateBBS();
         System.out.println(result1);
@@ -246,8 +247,8 @@ public class Main {
         System.out.println("Output: " + result + ", size: " + arr.length);
     }
 
-    public static void RSA() throws UnsupportedEncodingException {
-        RSA rsa = new RSA(0, 100000);
+    private static void RSA() {
+        RSA rsa = new RSA(10000, 1000000);
         rsa.print();
         String text = "Ala ma kota ale kot nie ma ali";
         rsa.doRSA(text);
@@ -257,7 +258,7 @@ public class Main {
     {
         //BBS();
         //AES();
-        errPropagation();
+        //errPropagation();
         //RSA();
     }
 }
