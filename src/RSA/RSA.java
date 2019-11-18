@@ -2,6 +2,7 @@ package RSA;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 public class RSA {
@@ -44,11 +45,11 @@ public class RSA {
         {
             if( x > y)
             {
-                x -= y;
+                x = x - y;
             }
             else
             {
-                y -= x;
+                y = y - x;
             }
         }
         return x;
@@ -91,11 +92,10 @@ public class RSA {
         return messageBytes.toString();
     }
 
-    private String decryption(String message) throws UnsupportedEncodingException {
+    private String decryption(String message) {
         BigInteger messageBytes = new BigInteger(message);
         messageBytes.modPow(BigInteger.valueOf(d), n);
-        String str = new String(messageBytes.toByteArray(), "UTF-8");
-        return str;
+        return new String(messageBytes.toByteArray(), StandardCharsets.UTF_8);
     }
 
     public void print()
@@ -104,7 +104,7 @@ public class RSA {
                 this.phi + ", e: " + this.e + ", d:" + this.d);
     }
 
-    public void doRSA(String text) throws UnsupportedEncodingException {
+    public void doRSA(String text) {
         System.out.println("Plain text: " + text);
         String encrypted = encryption(text);
         System.out.println("Encrypted message: " + encrypted);

@@ -11,7 +11,7 @@ public class BBS {
     private BigInteger seed;
     private int n;
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
     public BBS()
     {
@@ -55,11 +55,11 @@ public class BBS {
         {
             if( x > y)
             {
-                x -= y;
+                x = x - y;
             }
             else
             {
-                y -= x;
+                y = y - x;
             }
         }
         return x;
@@ -87,15 +87,15 @@ public class BBS {
 
     public String generateBBS()
     {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(int i = 0; i < this.n; i++)
         {
             this.seed = (this.seed.pow(2)).mod(m);
             String binaryBigInteger = this.seed.toString(2);
             char[] tempArr = binaryBigInteger.toCharArray();
-            result += tempArr[tempArr.length - 1];
+            result.append(tempArr[tempArr.length - 1]);
         }
-        return result;
+        return result.toString();
     }
 
     public void print()
