@@ -20,13 +20,10 @@ public class RSA {
     {
         this.p = getRandomPQ(minRange, maxRange);
         this.q = getRandomPQ(minRange, maxRange);
-        this.n = BigInteger.valueOf(this.p * this.q);
-        this.phi = BigInteger.valueOf((this.p - 1) * (this.q - 1));
-        //System.out.println("OK");
+        this.n = BigInteger.valueOf(this.p).multiply(BigInteger.valueOf(this.q));
+        this.phi = BigInteger.valueOf(this.p - 1).multiply(BigInteger.valueOf(this.q - 1));
         this.e = getE(minRange, maxRange);
-        //System.out.println("E");
         this.d = getD(minRange, maxRange);
-        //System.out.println("D");
     }
 
     private boolean isPrime(int x)

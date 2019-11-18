@@ -26,7 +26,7 @@ public class BBS {
     {
         this.p = getRandomPQ(minRange, maxRange);
         this.q = getRandomPQ(minRange, maxRange);
-        this.m = BigInteger.valueOf(this.p * this.q);
+        this.m = BigInteger.valueOf(this.p).multiply(BigInteger.valueOf(this.q));
         this.seed = BigInteger.valueOf(getRandomSeed(minRange, maxRange));
         this.n = nTimes;
     }
