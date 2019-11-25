@@ -1,10 +1,9 @@
 import BBS.*;
 import AES.*;
 import RSA.*;
+import Diffi_Hellman.*;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Main {
@@ -254,11 +253,18 @@ public class Main {
         rsa.doRSA(text);
     }
 
+    private static void DiffiHellman()
+    {
+        DiffiHellman dh = new DiffiHellman(10, 100000);
+        dh.generateKey();
+    }
+
     public static void main(String[] args) throws Exception
     {
         //BBS();
         //AES();
         //errPropagation();
-        RSA();
+        //RSA();
+        DiffiHellman();
     }
 }
