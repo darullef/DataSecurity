@@ -58,14 +58,12 @@ public class DiffiHellman {
             insertToMap(2, map);
             p /= 2;
         }
-
         for (int i = 3; i <= Math.sqrt(p); i += 2) {
             while (p % i == 0) {
                 insertToMap(i, map);
                 p /= i;
             }
         }
-
         if (p > 2)
             insertToMap(p, map);
         return map;
@@ -83,7 +81,6 @@ public class DiffiHellman {
         primeFactor.replaceAll((k, v) -> m / k);
         for (int i = 2; i <= m; i++) {
             boolean notPrimeRoot = false;
-            Set<Integer> reminder = new HashSet<>();
             for (Map.Entry<Integer, Integer> map : primeFactor.entrySet()) {
                 if(BigInteger.valueOf(i).modPow(BigInteger.valueOf(map.getValue()), BigInteger.valueOf(this.n.intValue())).equals(BigInteger.ONE))
                     notPrimeRoot = true;
