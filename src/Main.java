@@ -4,6 +4,7 @@ import RSA.*;
 import Diffi_Hellman.*;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -29,9 +30,9 @@ public class Main {
     {
         System.out.println("CBC");
 
-        File small = new File("1MB.txt");
-        File mid = new File("5MB.txt");
-        File big = new File("10MB.txt");
+        File small = new File("txt\\1MB.txt");
+        File mid = new File("txt\\5MB.txt");
+        File big = new File("txt\\10MB.txt");
 
         Scanner smallScan = new Scanner(small);
         Scanner midScan = new Scanner(mid);
@@ -69,9 +70,9 @@ public class Main {
     {
         System.out.println("CTR");
 
-        File small = new File("1MB.txt");
-        File mid = new File("5MB.txt");
-        File big = new File("10MB.txt");
+        File small = new File("txt\\1MB.txt");
+        File mid = new File("txt\\5MB.txt");
+        File big = new File("txt\\10MB.txt");
 
         Scanner smallScan = new Scanner(small);
         Scanner midScan = new Scanner(mid);
@@ -109,9 +110,9 @@ public class Main {
     {
         System.out.println("ECB");
 
-        File small = new File("1MB.txt");
-        File mid = new File("5MB.txt");
-        File big = new File("10MB.txt");
+        File small = new File("txt\\1MB.txt");
+        File mid = new File("txt\\5MB.txt");
+        File big = new File("txt\\10MB.txt");
 
         Scanner smallScan = new Scanner(small);
         Scanner midScan = new Scanner(mid);
@@ -124,23 +125,20 @@ public class Main {
         String key = "qwertyuiopasdfgh";
 
         long bigTimeStart = System.currentTimeMillis();
-        ECB ecb1 = new ECB();
-        String xxx3 = ecb1.encryption(bigString, key);
-        ecb1.decryption(xxx3, key);
+        String xxx3 = ECB.encryption(bigString, key);
+        ECB.decryption(xxx3, key);
         long bigTimeEnd = System.currentTimeMillis() - bigTimeStart;
         System.out.println("10MB file time: " + bigTimeEnd);
 
         long midTimeStart = System.currentTimeMillis();
-        ECB ecb2 = new ECB();
-        String xxx2 = ecb2.encryption(midString, key);
-        ecb2.decryption(xxx2, key);
+        String xxx2 = ECB.encryption(midString, key);
+        ECB.decryption(xxx2, key);
         long midTimeEnd = System.currentTimeMillis() - midTimeStart;
         System.out.println("5MB file time: " + midTimeEnd);
 
         long smallTimeStart = System.currentTimeMillis();
-        ECB ecb3 = new ECB();
-        String xxx1 = ecb3.encryption(smallString, key);
-        ecb3.decryption(xxx1, key);
+        String xxx1 = ECB.encryption(smallString, key);
+        ECB.decryption(xxx1, key);
         long smallTimeEnd = System.currentTimeMillis() - smallTimeStart;
         System.out.println("1MB file time: " + smallTimeEnd);
     }
@@ -149,9 +147,9 @@ public class Main {
     {
         System.out.println("CFB");
 
-        File small = new File("1MB.txt");
-        File mid = new File("5MB.txt");
-        File big = new File("10MB.txt");
+        File small = new File("txt\\1MB.txt");
+        File mid = new File("txt\\5MB.txt");
+        File big = new File("txt\\10MB.txt");
 
         Scanner smallScan = new Scanner(small);
         Scanner midScan = new Scanner(mid);
@@ -189,9 +187,9 @@ public class Main {
     {
         System.out.println("OFB");
 
-        File small = new File("1MB.txt");
-        File mid = new File("5MB.txt");
-        File big = new File("10MB.txt");
+        File small = new File("txt\\1MB.txt");
+        File mid = new File("txt\\5MB.txt");
+        File big = new File("txt\\10MB.txt");
 
         Scanner smallScan = new Scanner(small);
         Scanner midScan = new Scanner(mid);
@@ -263,8 +261,8 @@ public class Main {
     {
         //BBS();
         //AES();
-        //errPropagation();
         //RSA();
-        DiffiHellman();
+        //errPropagation();
+        //DiffiHellman();
     }
 }
