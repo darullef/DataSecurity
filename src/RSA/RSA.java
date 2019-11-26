@@ -10,8 +10,8 @@ public class RSA {
     private int q;
     private BigInteger n;
     private BigInteger phi;
-    private int e;
-    private int d;
+    private BigInteger e;
+    private BigInteger d;
 
     private Random random = new Random();
 
@@ -22,20 +22,19 @@ public class RSA {
         this.n = BigInteger.valueOf(this.p).multiply(BigInteger.valueOf(this.q));
         this.phi = BigInteger.valueOf(this.p - 1).multiply(BigInteger.valueOf(this.q - 1));
         this.e = getE(minRange, maxRange);
-        this.d = getD(minRange, maxRange);
+        this.d = e.modInverse(phi);
     }
 
-    private boolean isPrime(int x)
+    public boolean isPrime(int num)
     {
-        if(x <= 1)
-        {
+        if (num == 2)
             return true;
-        }
-        for(int i = 2; i < x; i++)
-        {
-            if(x % i == 0) return true;
-        }
-        return false;
+        if (num < 2 || num % 2 == 0)
+            return false;
+        for (int i = 3; i * i <= num; i += 2)
+            if (num % i == 0)
+                return false;
+        return true;
     }
 
     private int nwd_1(int x, int y)
@@ -57,29 +56,19 @@ public class RSA {
     private int getRandomPQ(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while((!isPrime(x)) && (this.p == this.q))
+        while((isPrime(x)))
         {
             x = random.nextInt(maxRange) + minRange;
         }
         return x;
     }
 
-    private int getE(int minRange, int maxRange)
+    private BigInteger getE(int minRange, int maxRange)
     {
-        int x = random.nextInt(maxRange) + minRange;
-        while(!isPrime(x) && nwd_1(x, this.phi.intValue()) == 1)
+        BigInteger x = BigInteger.valueOf(random.nextInt(maxRange) + minRange);
+        while(x.gcd(phi).intValue() != 1)
         {
-            x = random.nextInt(maxRange) + minRange;
-        }
-        return x;
-    }
-
-    private int getD(int minRange, int maxRange)
-    {
-        int x = random.nextInt(maxRange) + minRange;
-        while((e * x) % n.intValue() == (1 % phi.intValue()) % n.intValue())
-        {
-            x = random.nextInt(maxRange) + minRange;
+            x = BigInteger.valueOf(random.nextInt(maxRange) + minRange);
         }
         return x;
     }
@@ -87,13 +76,13 @@ public class RSA {
     private String encryption(String message)
     {
         BigInteger messageBytes = new BigInteger(message.getBytes());
-        messageBytes.modPow(BigInteger.valueOf(e), n);
+        messageBytes.modPow(e, n);
         return messageBytes.toString();
     }
 
     private String decryption(String message) {
         BigInteger messageBytes = new BigInteger(message);
-        messageBytes.modPow(BigInteger.valueOf(d), n);
+        messageBytes.modPow(d, n);
         return new String(messageBytes.toByteArray(), StandardCharsets.UTF_8);
     }
 

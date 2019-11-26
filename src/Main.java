@@ -245,7 +245,7 @@ public class Main {
     }
 
     private static void RSA() {
-        RSA rsa = new RSA(10000, 1000000);
+        RSA rsa = new RSA(10, 1000000);
         rsa.print();
         String text = "Ala ma kota ale kot nie ma ali";
         rsa.doRSA(text);
