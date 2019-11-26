@@ -57,7 +57,7 @@ public class RSA {
     private int getRandomPQ(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while((isPrime(x)) && (this.p == this.q))
+        while((!isPrime(x)) && (this.p == this.q))
         {
             x = random.nextInt(maxRange) + minRange;
         }
@@ -67,7 +67,7 @@ public class RSA {
     private int getE(int minRange, int maxRange)
     {
         int x = random.nextInt(maxRange) + minRange;
-        while(isPrime(x) && nwd_1(x, this.phi.intValue()) == 1)
+        while(!isPrime(x) && nwd_1(x, this.phi.intValue()) == 1)
         {
             x = random.nextInt(maxRange) + minRange;
         }

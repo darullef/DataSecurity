@@ -1,7 +1,10 @@
 package Diffi_Hellman;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 
 public class DiffiHellman {
 
@@ -27,7 +30,7 @@ public class DiffiHellman {
     private BigInteger generateN(int minRange, int maxRange)
     {
         int x = rand.nextInt(maxRange) + minRange;
-        while(isPrime(x))
+        while(!isPrime(x))
         {
             x = rand.nextInt(maxRange) + minRange;
         }
