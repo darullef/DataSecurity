@@ -259,13 +259,13 @@ public class Main {
     }
 
     private static void Steganography() throws IOException {
-        Patchwork patchwork = new Patchwork("cat.jpg", 400);
-        patchwork.d00pa();
+        Stegano stegano = new Stegano("cat.jpg", "dupa cyce wadowice");
+        stegano.print();
+        stegano.encryprion();
     }
 
     public static void main(String[] args) throws Exception
     {
-        //DiffiHellman();
         Steganography();
     }
 }
