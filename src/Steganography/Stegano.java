@@ -78,21 +78,6 @@ public class Stegano {
         return rgbValues;
     }
 
-    private char[] checkBinaryLength(char[] arr)
-    {
-        StringBuilder num = new StringBuilder((String.valueOf(arr)));
-        int l = num.length();
-        if(l < 8)
-        {
-            while(num.length() < 8)
-            {
-                num.append("0");
-            }
-            return num.toString().toCharArray();
-        }
-        else return arr;
-    }
-
     private Color changePixelValues(int[] rgbValues, String messageInBinaryForm, int counter)
     {
         char[] messageInBinaryFormCharArr = messageInBinaryForm.toCharArray();
@@ -101,13 +86,13 @@ public class Stegano {
         int green = rgbValues[1];
         int blue = rgbValues[2];
 
-        char[] newRed = checkBinaryLength(Integer.toBinaryString(red).toCharArray());
-        char[] newGreen = checkBinaryLength(Integer.toBinaryString(green).toCharArray());
-        char[] newBlue = checkBinaryLength(Integer.toBinaryString(blue).toCharArray());
+        char[] newRed = Integer.toBinaryString(red).toCharArray();
+        char[] newGreen = Integer.toBinaryString(green).toCharArray();
+        char[] newBlue = Integer.toBinaryString(blue).toCharArray();
 
-        newRed[7] = messageInBinaryFormCharArr[counter - 2];
-        newGreen[7] = messageInBinaryFormCharArr[counter - 1];
-        newBlue[7] = messageInBinaryFormCharArr[counter];
+        newRed[newRed.length - 1] = messageInBinaryFormCharArr[counter - 2];
+        newGreen[newGreen.length - 1] = messageInBinaryFormCharArr[counter - 1];
+        newBlue[newBlue.length - 1] = messageInBinaryFormCharArr[counter];
 
         return new Color(Integer.parseInt(String.valueOf(newRed), 2), Integer.parseInt(String.valueOf(newGreen), 2), Integer.parseInt(String.valueOf(newBlue), 2));
     }
