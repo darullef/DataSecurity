@@ -2,9 +2,10 @@ import BBS.*;
 import AES.*;
 import RSA.*;
 import Diffi_Hellman.*;
+import Steganography.*;
 
 import java.io.File;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -245,7 +246,7 @@ public class Main {
     }
 
     private static void RSA() {
-        RSA rsa = new RSA(10, 1000000);
+        RSA rsa = new RSA(10, 1000000000);
         rsa.print();
         String text = "Ala ma kota ale kot nie ma ali";
         rsa.doRSA(text);
@@ -257,12 +258,14 @@ public class Main {
         dh.generateKey();
     }
 
+    private static void Steganography() throws IOException {
+        Patchwork patchwork = new Patchwork("cat.jpg", 400);
+        patchwork.d00pa();
+    }
+
     public static void main(String[] args) throws Exception
     {
-        //BBS();
-        //AES();
-        RSA();
-        //errPropagation();
         //DiffiHellman();
+        Steganography();
     }
 }

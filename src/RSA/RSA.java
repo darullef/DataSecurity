@@ -25,7 +25,7 @@ public class RSA {
         this.d = e.modInverse(phi);
     }
 
-    public boolean isPrime(int num)
+    private boolean isPrime(int num)
     {
         if (num == 2)
             return true;
@@ -35,22 +35,6 @@ public class RSA {
             if (num % i == 0)
                 return false;
         return true;
-    }
-
-    private int nwd_1(int x, int y)
-    {
-        while(x != y)
-        {
-            if( x > y)
-            {
-                x = x - y;
-            }
-            else
-            {
-                y = y - x;
-            }
-        }
-        return x;
     }
 
     private int getRandomPQ(int minRange, int maxRange)
