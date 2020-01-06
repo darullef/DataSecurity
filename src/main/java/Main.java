@@ -3,9 +3,12 @@ import AES.*;
 import RSA.*;
 import Diffi_Hellman.*;
 import Steganography.*;
+import CW8.*;
+import CW9.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Main {
@@ -259,13 +262,46 @@ public class Main {
     }
 
     private static void Steganography() throws IOException {
-        Stegano stegano = new Stegano("cat.jpg", "dupa cyce wadowice");
+        Stegano stegano = new Stegano("cat.jpg", "test");
         stegano.print();
         stegano.encryprion();
+        stegano.decryption("txt\\XY.txt");
+    }
+
+    private static void CW8() throws NoSuchAlgorithmException {
+        DigestFunction md5 = new MD5();
+        md5.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha1 = new SHA1();
+        sha1.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha2_1 = new SHA2("SHA-224");
+        sha2_1.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha2_2 = new SHA2("SHA-256");
+        sha2_2.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha2_3 = new SHA2("SHA-384");
+        sha2_3.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha2_4 = new SHA2("SHA-512");
+        sha2_4.checkTime("ala ma kota kot ma ale");
+
+        DigestFunction sha3 = new SHA3();
+        sha3.checkTime("ala ma kota kot ma ale");
+    }
+
+    private static void CW9()
+    {
+        TrivialMethod tw = new TrivialMethod(100);
+        System.out.println("Trivial Method");
+        tw.init();
+        System.out.println("Shamir Scheme");
+
     }
 
     public static void main(String[] args) throws Exception
     {
-        Steganography();
+        CW8();
     }
 }
