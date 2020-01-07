@@ -8,7 +8,9 @@ import CW9.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class Main {
@@ -291,17 +293,37 @@ public class Main {
         sha3.checkTime("ala ma kota kot ma ale");
     }
 
-    private static void CW9()
+    private static void CW9_trivial()
     {
         TrivialMethod tw = new TrivialMethod(100);
-        System.out.println("Trivial Method");
         tw.init();
-        System.out.println("Shamir Scheme");
+    }
 
+    public static void Shamir() {
+        int CERTAINTY = 1024;
+        SecureRandom random = new SecureRandom();
+
+        BigInteger secret = new BigInteger("12345678900987654321");
+        BigInteger prime = new BigInteger(secret.bitLength() + 1, CERTAINTY, random);
+
+        int needed = 3;
+        int available = 5;
+
+        System.out.println("Secret: " + secret + ", needed: " + needed + ", available: " + available + ", prime: " + prime);
+        SecretShare[] shares = Shamir.split(secret, needed, available, prime, random);
+
+        SecretShare[] sharesToViewSecret = new SecretShare[] {shares[1],shares[4]}; // 1 & 4
+        BigInteger result = Shamir.combine(sharesToViewSecret, prime);
+
+        sharesToViewSecret = new SecretShare[] {shares[0],shares[1],shares[3]}; // 0 & 1 & 3
+        result = Shamir.combine(sharesToViewSecret, prime);
+
+        sharesToViewSecret = new SecretShare[] {shares[0],shares[1],shares[2],shares[3]}; // 0 & 1 &  2 & 3
+        result = Shamir.combine(sharesToViewSecret, prime);
     }
 
     public static void main(String[] args) throws Exception
     {
-        CW8();
+        CW9_trivial();
     }
 }

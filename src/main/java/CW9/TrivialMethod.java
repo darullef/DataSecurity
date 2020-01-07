@@ -1,6 +1,7 @@
 package CW9;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Random;
 
 public class TrivialMethod {
@@ -17,6 +18,7 @@ public class TrivialMethod {
         this.n = rand() - 1;
         this.s = rand() - 1;
         this.o = 0;
+        System.out.println("k: " + this.k + ", secret: " + this.s + ", n: " + this.n);
         this.arr = createArr();
     }
     
@@ -33,6 +35,7 @@ public class TrivialMethod {
         {
             temp[i] = rand();
         }
+        System.out.println(Arrays.toString(temp));
         return temp;
     }
 
@@ -44,7 +47,6 @@ public class TrivialMethod {
             temp -= i;
         }
         this.o = temp % this.k;
-        System.out.println(this.o);
     }
 
     private void recovery()
@@ -55,12 +57,11 @@ public class TrivialMethod {
             temp += i;
         }
         int result = temp % this.k;
-        System.out.println(result);
+        System.out.println("secret: " + temp + " % " + this.k + " = " + result);
     }
 
     public void init()
     {
-        System.out.println("k:" + this.k + ", s:" + this.s + ", n:" + this.n);
         split();
         recovery();
     }
