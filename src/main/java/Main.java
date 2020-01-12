@@ -5,6 +5,7 @@ import Diffi_Hellman.*;
 import Steganography.*;
 import CW8.*;
 import CW9.*;
+import CW10.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -313,17 +314,24 @@ public class Main {
         SecretShare[] shares = Shamir.split(secret, needed, available, prime, random);
 
         SecretShare[] sharesToViewSecret = new SecretShare[] {shares[1],shares[4]}; // 1 & 4
-        BigInteger result = Shamir.combine(sharesToViewSecret, prime);
+        Shamir.combine(sharesToViewSecret, prime);
 
         sharesToViewSecret = new SecretShare[] {shares[0],shares[1],shares[3]}; // 0 & 1 & 3
-        result = Shamir.combine(sharesToViewSecret, prime);
+        Shamir.combine(sharesToViewSecret, prime);
 
         sharesToViewSecret = new SecretShare[] {shares[0],shares[1],shares[2],shares[3]}; // 0 & 1 &  2 & 3
-        result = Shamir.combine(sharesToViewSecret, prime);
+        Shamir.combine(sharesToViewSecret, prime);
+    }
+
+    private static void Cw10() throws IOException
+    {
+        VisualCryptography vc = new VisualCryptography("cat.jpg");
+        vc.createShares();
+        vc.mergeShares();
     }
 
     public static void main(String[] args) throws Exception
     {
-        CW9_trivial();
+        Cw10();
     }
 }
